@@ -1,6 +1,6 @@
 # Redmine Time Entries
 
-Redmine の作業記録をするためのコマンドラインツールです。
+Redmine の作業記録をするためのコマンドラインツールです。社内向けツールとして作成したので、細かい部分のツメが甘いです。お使いの際にはそのあたりを承知のうえでご利用ください。
 
 ## 前提条件
 
@@ -19,7 +19,7 @@ $ npm install -g coffee-script
 続いて、コマンド本体をインストールします。
 
 ```
-$ npm install https://git.zealot.co.jp/tocky/redmine-time-entries.git
+$ npm install -g https://github.com/tocky/redmine-time-entries.git
 ```
 
 ## 設定
