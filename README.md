@@ -1,0 +1,35 @@
+# Redmine Time Entries
+
+Redmine の作業記録をするためのコマンドラインツールです。
+
+## 前提条件
+
+- node
+- npm
+- coffee-script
+
+## インストール
+
+少なくとも node と npm が導入されている前提で説明します。このツールは CoffeeScript で書かれているので `coffee` コマンドが利用できる必要があります。もし、未導入であれば次のコマンドを実行してインストールします。
+
+```
+$ npm install -g coffee-script
+```
+
+続いて、コマンド本体をインストールします。
+
+```
+$ npm install https://git.zealot.co.jp/tocky/redmine-time-entries.git
+```
+
+## 設定
+
+Redmine の API にアクセスするため、アクセスキーを取得します。アクセスキーは個人設定画面の右ペインにて取得することができます。詳しくはオフィシャルサイトなどを参考にしてください。
+
+次に、アクセスキーを環境変数に設定します。
+
+```
+$ export REDMINE_API_KEY='<Redmine Access Key>'
+```
+
+必要に応じて `.bashrc` や `.zshrc` などに追記しましょう。
