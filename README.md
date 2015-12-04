@@ -26,9 +26,11 @@ $ npm install https://git.zealot.co.jp/tocky/redmine-time-entries.git
 
 Redmine の API にアクセスするため、アクセスキーを取得します。アクセスキーは個人設定画面の右ペインにて取得することができます。詳しくはオフィシャルサイトなどを参考にしてください。
 
-次に、アクセスキーを環境変数に設定します。
+次に Redmine の URL とアクセスキーを環境変数に設定します。
 
 ```
+# redmine.example.com のように指定します
+$ export REDMINE_URL='<Redmine URL>'
 $ export REDMINE_API_KEY='<Redmine Access Key>'
 ```
 

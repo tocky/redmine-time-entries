@@ -2,6 +2,7 @@
 
 https = require 'https'
 readline = require 'readline'
+colors = require 'colors'
 argv = require('minimist') process.argv.slice(2), {
   string: [
     'project'
@@ -28,7 +29,7 @@ argv = require('minimist') process.argv.slice(2), {
 }
 AsciiTable = require 'ascii-table'
 
-END_POINT = 'redmine.zealot.co.jp'
+END_POINT = process.env.REDMINE_URL
 TE_CXTPATH = '/time_entries'
 REDMINE_API_KEY = process.env.REDMINE_API_KEY
 ENCODING = 'utf-8'
@@ -68,7 +69,11 @@ class App
       res.on 'data', (chunk) ->
         body += chunk
       res.on 'end', () ->
-        console.log body
+        json = JSON.parse body
+        if json.errors
+          console.error json.errors.join('\n').red
+        else if json.time_entry
+          console.log '作業時間を登録しました'.green
 
     # req.write('project_id=62&hours=4&comments=testtest')
     entry = {
@@ -103,7 +108,7 @@ class App
 
     req.end()
     req.on 'error', (err) ->
-      console.error err
+      console.error err.red
 
   #
   # Output time entries
@@ -146,7 +151,10 @@ class App
   #
   prepare = ->
     unless process.env.REDMINE_API_KEY
-      console.error '環境変数 REDMINE_API_KEY が設定されていません'
+      console.error '環境変数 REDMINE_URL が設定されていません'.red
+      process.exit()
+    unless process.env.REDMINE_API_KEY
+      console.error '環境変数 REDMINE_API_KEY が設定されていません'.red
       process.exit()
 
   #
@@ -160,7 +168,7 @@ Redmine の作業時間をコマンドラインから入力するためのユー
 rte --list [-l]
 
 作業時間を登録する
-rte [-p <Project ID> | -i <Issue ID>] -h <Hours> [-a <Activity> -c <Comments>]
+rte [-p <Project ID> | -i <Issue ID>] -h <Hours> [-a <Activity ID> -c <Comments>]
 '''
 
 (new App(argv)).run()

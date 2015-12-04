@@ -6,14 +6,19 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Shin Tokiwa",
-  "license": "ISC",
+  "tags": [
+    "tool",
+    "redmine"
+  ],
+  "author": "shin.tokiwa@gmail.com",
+  "license": "MIT",
   "preferGlobal": true,
   "bin": {
     "rte": "./bin/main.coffee"
   },
   "dependencies": {
     "ascii-table": "0.0.8",
+    "colors": "^1.1.2",
     "minimist": "^1.2.0"
   }
 }
